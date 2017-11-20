@@ -58,6 +58,10 @@ double GetMembershipForTrapezoid(double param, double low1, double peak1, double
 	return 1;
 }
 
+double GetCentroidForTrapezoid(double slope, double low1, double peak1, double peak2, double low2)
+{
+	return (slope*(peak1+peak2) + (low1+low2)*(2 - slope))/4;
+}
 
 std::vector<FuzzyResult> MembershipAQL(double aql)
 {
@@ -121,7 +125,7 @@ std::vector<FuzzyResult> MembershipMaxP(double maxp)
 	return result;
 }
 
-std::vector<FuzzyResult> MembershipDropP(double p)
+double MembershipDropP(std::vector<FuzzyResult> fr)
 {
 	double zero_low1 = 0;
 	double zero_peak1 = 0.0;
@@ -139,25 +143,43 @@ std::vector<FuzzyResult> MembershipDropP(double p)
 	double high_peak1 = 0.2;
 	double high_peak2 = 1;
 	double high_low2 = 1;
-	double zero_score = GetMembershipForTrapezoid(p,zero_low1,zero_peak1,zero_peak2,zero_low2);
-	double low_score = GetMembershipForTrapezoid(p,low_low1,low_peak1,low_peak2,low_low2);
-	double moderate_score = GetMembershipForTrapezoid(p,moderate_low1,moderate_peak1,moderate_peak2,moderate_low2);
-	double high_score = GetMembershipForTrapezoid(p,high_low1,high_peak1,high_peak2,high_low2);
-	std::vector<FuzzyResult> result;
-	FuzzyResult fr;
-	fr.name = "zero";
-	fr.value = zero_score;
-	result.push_back(fr);
-	fr.name = "low";
-	fr.value = low_score;
-	result.push_back(fr);
-	fr.name = "moderate";
-	fr.value = moderate_score;
-	result.push_back(fr);
-	fr.name = "high";
-	fr.value = high_score;
-	result.push_back(fr);
-	return result;
+	FuzzyResult zero,low,moderate,high;
+	for(std::vector<FuzzyResult>::iterator it = fr.begin() ; it != fr.end(); ++it)
+	{
+		if(it->name == "zero")
+		{
+			zero.name = "zero";
+			zero.value = it->value;
+		}
+		if(it->name == "low")
+		{
+			low.name = "low";
+			low.value = it->value;
+		}
+		if(it->name == "moderate")
+		{
+			moderate.name = "moderate";
+			moderate.value = it->value;
+		}
+		if(it->name == "high")
+		{
+			high.name = "high";
+			high.value = it->value;
+		}
+		
+	}
+	double zero_centroid = GetCentroidForTrapezoid(zero.value,zero_low1,zero_peak1,zero_peak2,zero_low2);
+	double low_centroid = GetCentroidForTrapezoid(low.value,low_low1,low_peak1,low_peak2,low_low2);
+	double moderate_centroid = GetCentroidForTrapezoid(moderate.value,moderate_low1,moderate_peak1,moderate_peak2,moderate_low2);
+	double high_centroid = GetCentroidForTrapezoid(high.value,high_low1,high_peak1,high_peak2,high_low2);
+	
+	int count = 0;
+	if(zero_centroid > 0) count++;
+	if(low_centroid > 0) count++;
+	if(moderate_centroid > 0) count++;
+	if(high_centroid > 0) count++;
+	
+	return (zero_centroid+low_centroid+moderate_centroid+high_centroid)/count;
 }
 
 FuzzyResult FuzzyInferenceRuleBase(FuzzyResult aql, FuzzyResult maxP)
@@ -173,6 +195,67 @@ FuzzyResult FuzzyInferenceRuleBase(FuzzyResult aql, FuzzyResult maxP)
 		fr.name = "high";
 	fr.value = std::min(aql.value,maxP.value);
 	return fr;	
+}
+
+std::vector<FuzzyResult> AvgClassifier(std::vector<FuzzyResult> fr)
+{
+	double zero=0, low=0, mod=0, high=0;
+	double zc =0, lc =0, mc =0, hc =0;
+	for(std::vector<FuzzyResult>::iterator it = fr.begin() ; it != fr.end(); ++it)
+	{
+		if(it->name == "zero")
+		{
+			zero += it->value;
+			zc++;
+		}
+		if(it->name == "low")
+		{
+			low += it->value;
+			lc++;
+		}
+		if(it->name == "moderate")
+		{
+			mod += it->value;
+			mc++;
+		}
+		if(it->name == "high")
+		{
+			high += it->value;
+			hc++;
+		}
+	}
+	zero = zc == 0 ? zero : zero/zc;
+	low = lc == 0 ? low : low/lc;
+	mod = mc == 0 ? mod : mod/mc;
+	high = hc == 0 ? high : high/hc;
+	
+	FuzzyResult zf,lf,mf,hf;
+	zf.name = "zero"; zf.value = zero;
+	lf.name = "low"; lf.value = low;
+	mf.name = "moderate"; mf.value = mod;
+	hf.name = "high"; hf.value = high;
+	
+	std::vector<FuzzyResult> f;
+	f.push_back(zf);
+	f.push_back(lf);
+	f.push_back(mf);
+	f.push_back(hf);
+
+	return f;
+}
+
+double TwoInputDefuzzifier(std::vector<FuzzyResult> aql, std::vector<FuzzyResult> maxP)
+{
+	std::vector<FuzzyResult> result;
+	for (std::vector<FuzzyResult>::iterator it1 = aql.begin() ; it1 != aql.end(); ++it1)
+		for (std::vector<FuzzyResult>::iterator it2 = maxP.begin() ; it2 != maxP.end(); ++it2)
+		{
+			FuzzyResult f = FuzzyInferenceRuleBase(*it1, *it2);
+			if(f.value>0)
+				result.push(f);
+		}
+	result = AvgClassifier(result);
+	return MembershipDropP(result);	
 }
 
 TypeId FuzzyRedQueueDisc::GetTypeId (void)
@@ -754,9 +837,9 @@ FuzzyRedQueueDisc::CalculatePNew (double qAvg, double maxTh, bool isGentle, doub
 */
 	std::vector<FuzzyResult> qAvgFuzzy = MembershipAQL(qAvg);
 	std::vector<FuzzyResult> maxPFuzzy = MembershipMaxP(maxP);
-	// To be Implemented  // double probabilityDrop = TwoInputDefuzzifier(qAvgFuzzy,maxPFuzzy,FuzzyInferenceRuleBase);
-	//p = probabilityDrop;
-	p = 0;
+	double probabilityDrop = TwoInputDefuzzifier(qAvgFuzzy,maxPFuzzy);
+	p = probabilityDrop;
+	//p = 0;
 	
   if (p > 1.0)
     {

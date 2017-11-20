@@ -63,7 +63,7 @@ int main (int argc, char *argv[])
   double      maxTh = 15;
   uint32_t    pktSize = 512;
   std::string appDataRate = "10Mbps";
-  std::string queueDiscType = "FRED";
+  std::string queueDiscType = "RED";
   uint16_t port = 5001;
   std::string bottleNeckLinkBw = "1Mbps";
   std::string bottleNeckLinkDelay = "50ms";
