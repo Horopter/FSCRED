@@ -30,5 +30,16 @@ cd ..
 ./waf --run "red-vs-hred --queueDiscType=HRED --redMinTh=6 --shape=4"
 ./waf --run "red-vs-hred --queueDiscType=HRED --redMinTh=7 --shape=2"
 ./waf --run "red-vs-hred --queueDiscType=HRED --redMinTh=7 --shape=4"
+./waf --run "red-vs-fred --queueDiscType=FRED --redMinTh=3 --shape=2"
+./waf --run "red-vs-fred --queueDiscType=FRED --redMinTh=3 --shape=4"
+./waf --run "red-vs-fred --queueDiscType=FRED --redMinTh=4 --shape=2"
+./waf --run "red-vs-fred --queueDiscType=FRED --redMinTh=4 --shape=4"
+./waf --run "red-vs-fred --queueDiscType=FRED --redMinTh=5 --shape=2"
+./waf --run "red-vs-fred --queueDiscType=FRED --redMinTh=5 --shape=4"
+./waf --run "red-vs-fred --queueDiscType=FRED --redMinTh=6 --shape=2"
+./waf --run "red-vs-fred --queueDiscType=FRED --redMinTh=6 --shape=4"
+./waf --run "red-vs-fred --queueDiscType=FRED --redMinTh=7 --shape=2"
+./waf --run "red-vs-fred --queueDiscType=FRED --redMinTh=7 --shape=4"
+
 cd automation
 
