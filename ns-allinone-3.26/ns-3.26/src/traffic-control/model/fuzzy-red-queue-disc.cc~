@@ -252,7 +252,7 @@ double TwoInputDefuzzifier(std::vector<FuzzyResult> aql, std::vector<FuzzyResult
 		{
 			FuzzyResult f = FuzzyInferenceRuleBase(*it1, *it2);
 			if(f.value>0)
-				result.push(f);
+				result.push_back(f);
 		}
 	result = AvgClassifier(result);
 	return MembershipDropP(result);	

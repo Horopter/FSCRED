@@ -1,0 +1,274 @@
+Waf: Entering directory `/home/taegeuk/ns3-26/SFL-RED/ns-allinone-3.26/ns-3.26/build'
+[1799/1945] Compiling scratch/topology.cc
+[1921/1945] Linking build/scratch/topology
+Waf: Leaving directory `/home/taegeuk/ns3-26/SFL-RED/ns-allinone-3.26/ns-3.26/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (21.249s)
+InitParams :: RedMinth : 5 RedMaxTh : 15 m_isARED :  0
+InitParams :: RedMinth : 5 RedMaxTh : 15 m_isARED :  0
+Flow 0 (10.1.1.1:49153 -> 10.1.11.1:8080)
+ Tx Bytes: 4917972
+ Rx Bytes: 4903576
+ Throughput: 1.90611 Mbps 
+Flow 1 (10.1.2.1:49153 -> 10.1.10.1:8080)
+ Tx Bytes: 1197952
+ Rx Bytes: 1173564
+ Throughput: 0.444409 Mbps 
+Flow 2 (10.1.3.1:49153 -> 10.1.9.1:8080)
+ Tx Bytes: 1126900
+ Rx Bytes: 1099864
+ Throughput: 0.416264 Mbps 
+Flow 3 (10.1.4.1:49153 -> 10.1.8.1:8080)
+ Tx Bytes: 1178472
+ Rx Bytes: 1154960
+ Throughput: 0.437382 Mbps 
+Flow 4 (10.1.5.1:49153 -> 10.1.7.1:8080)
+ Tx Bytes: 4210600
+ Rx Bytes: 4192968
+ Throughput: 1.62991 Mbps 
+Flow 5 (10.1.11.1:8080 -> 10.1.1.1:49153)
+ Tx Bytes: 230832
+ Rx Bytes: 230832
+ Throughput: 0.0900964 Mbps 
+Flow 6 (10.1.10.1:8080 -> 10.1.2.1:49153)
+ Tx Bytes: 64328
+ Rx Bytes: 64328
+ Throughput: 0.0243847 Mbps 
+Flow 7 (10.1.9.1:8080 -> 10.1.3.1:49153)
+ Tx Bytes: 62508
+ Rx Bytes: 62508
+ Throughput: 0.0236722 Mbps 
+Flow 8 (10.1.8.1:8080 -> 10.1.4.1:49153)
+ Tx Bytes: 64588
+ Rx Bytes: 64588
+ Throughput: 0.0245094 Mbps 
+Flow 9 (10.1.7.1:8080 -> 10.1.5.1:49153)
+ Tx Bytes: 199684
+ Rx Bytes: 199684
+ Throughput: 0.077974 Mbps 
+Waf: Entering directory `/home/taegeuk/ns3-26/SFL-RED/ns-allinone-3.26/ns-3.26/build'
+Waf: Leaving directory `/home/taegeuk/ns3-26/SFL-RED/ns-allinone-3.26/ns-3.26/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (10.474s)
+InitParams :: RedMinth : 5 RedMaxTh : 15 m_isARED :  1
+InitParams :: RedMinth : 5 RedMaxTh : 15 m_isARED :  1
+Flow 0 (10.1.1.1:49153 -> 10.1.11.1:8080)
+ Tx Bytes: 4917972
+ Rx Bytes: 4903576
+ Throughput: 1.90611 Mbps 
+Flow 1 (10.1.2.1:49153 -> 10.1.10.1:8080)
+ Tx Bytes: 1197952
+ Rx Bytes: 1173564
+ Throughput: 0.444409 Mbps 
+Flow 2 (10.1.3.1:49153 -> 10.1.9.1:8080)
+ Tx Bytes: 1126900
+ Rx Bytes: 1099864
+ Throughput: 0.416264 Mbps 
+Flow 3 (10.1.4.1:49153 -> 10.1.8.1:8080)
+ Tx Bytes: 1178472
+ Rx Bytes: 1154960
+ Throughput: 0.437382 Mbps 
+Flow 4 (10.1.5.1:49153 -> 10.1.7.1:8080)
+ Tx Bytes: 4210600
+ Rx Bytes: 4192968
+ Throughput: 1.62991 Mbps 
+Flow 5 (10.1.11.1:8080 -> 10.1.1.1:49153)
+ Tx Bytes: 230832
+ Rx Bytes: 230832
+ Throughput: 0.0900964 Mbps 
+Flow 6 (10.1.10.1:8080 -> 10.1.2.1:49153)
+ Tx Bytes: 64328
+ Rx Bytes: 64328
+ Throughput: 0.0243847 Mbps 
+Flow 7 (10.1.9.1:8080 -> 10.1.3.1:49153)
+ Tx Bytes: 62508
+ Rx Bytes: 62508
+ Throughput: 0.0236722 Mbps 
+Flow 8 (10.1.8.1:8080 -> 10.1.4.1:49153)
+ Tx Bytes: 64588
+ Rx Bytes: 64588
+ Throughput: 0.0245094 Mbps 
+Flow 9 (10.1.7.1:8080 -> 10.1.5.1:49153)
+ Tx Bytes: 199684
+ Rx Bytes: 199684
+ Throughput: 0.077974 Mbps 
+Waf: Entering directory `/home/taegeuk/ns3-26/SFL-RED/ns-allinone-3.26/ns-3.26/build'
+Waf: Leaving directory `/home/taegeuk/ns3-26/SFL-RED/ns-allinone-3.26/ns-3.26/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (4.802s)
+InitParams :: RedMinth : 5 RedMaxTh : 15 m_isHRED :  1
+InitParams :: RedMinth : 5 RedMaxTh : 15 m_isHRED :  1
+Flow 0 (10.1.1.1:49153 -> 10.1.11.1:8080)
+ Tx Bytes: 4917972
+ Rx Bytes: 4903576
+ Throughput: 1.90611 Mbps 
+Flow 1 (10.1.2.1:49153 -> 10.1.10.1:8080)
+ Tx Bytes: 1197952
+ Rx Bytes: 1173564
+ Throughput: 0.444409 Mbps 
+Flow 2 (10.1.3.1:49153 -> 10.1.9.1:8080)
+ Tx Bytes: 1126900
+ Rx Bytes: 1099864
+ Throughput: 0.416264 Mbps 
+Flow 3 (10.1.4.1:49153 -> 10.1.8.1:8080)
+ Tx Bytes: 1178472
+ Rx Bytes: 1154960
+ Throughput: 0.437382 Mbps 
+Flow 4 (10.1.5.1:49153 -> 10.1.7.1:8080)
+ Tx Bytes: 4210600
+ Rx Bytes: 4192968
+ Throughput: 1.62991 Mbps 
+Flow 5 (10.1.11.1:8080 -> 10.1.1.1:49153)
+ Tx Bytes: 230832
+ Rx Bytes: 230832
+ Throughput: 0.0900964 Mbps 
+Flow 6 (10.1.10.1:8080 -> 10.1.2.1:49153)
+ Tx Bytes: 64328
+ Rx Bytes: 64328
+ Throughput: 0.0243847 Mbps 
+Flow 7 (10.1.9.1:8080 -> 10.1.3.1:49153)
+ Tx Bytes: 62508
+ Rx Bytes: 62508
+ Throughput: 0.0236722 Mbps 
+Flow 8 (10.1.8.1:8080 -> 10.1.4.1:49153)
+ Tx Bytes: 64588
+ Rx Bytes: 64588
+ Throughput: 0.0245094 Mbps 
+Flow 9 (10.1.7.1:8080 -> 10.1.5.1:49153)
+ Tx Bytes: 199684
+ Rx Bytes: 199684
+ Throughput: 0.077974 Mbps 
+Waf: Entering directory `/home/taegeuk/ns3-26/SFL-RED/ns-allinone-3.26/ns-3.26/build'
+Waf: Leaving directory `/home/taegeuk/ns3-26/SFL-RED/ns-allinone-3.26/ns-3.26/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (7.572s)
+InitParams :: RedMinth : 5 RedMaxTh : 15 m_isFRED :  1
+InitParams :: RedMinth : 5 RedMaxTh : 15 m_isFRED :  1
+Flow 0 (10.1.1.1:49153 -> 10.1.11.1:8080)
+ Tx Bytes: 4917972
+ Rx Bytes: 4903576
+ Throughput: 1.90611 Mbps 
+Flow 1 (10.1.2.1:49153 -> 10.1.10.1:8080)
+ Tx Bytes: 1197952
+ Rx Bytes: 1173564
+ Throughput: 0.444409 Mbps 
+Flow 2 (10.1.3.1:49153 -> 10.1.9.1:8080)
+ Tx Bytes: 1126900
+ Rx Bytes: 1099864
+ Throughput: 0.416264 Mbps 
+Flow 3 (10.1.4.1:49153 -> 10.1.8.1:8080)
+ Tx Bytes: 1178472
+ Rx Bytes: 1154960
+ Throughput: 0.437382 Mbps 
+Flow 4 (10.1.5.1:49153 -> 10.1.7.1:8080)
+ Tx Bytes: 4210600
+ Rx Bytes: 4192968
+ Throughput: 1.62991 Mbps 
+Flow 5 (10.1.11.1:8080 -> 10.1.1.1:49153)
+ Tx Bytes: 230832
+ Rx Bytes: 230832
+ Throughput: 0.0900964 Mbps 
+Flow 6 (10.1.10.1:8080 -> 10.1.2.1:49153)
+ Tx Bytes: 64328
+ Rx Bytes: 64328
+ Throughput: 0.0243847 Mbps 
+Flow 7 (10.1.9.1:8080 -> 10.1.3.1:49153)
+ Tx Bytes: 62508
+ Rx Bytes: 62508
+ Throughput: 0.0236722 Mbps 
+Flow 8 (10.1.8.1:8080 -> 10.1.4.1:49153)
+ Tx Bytes: 64588
+ Rx Bytes: 64588
+ Throughput: 0.0245094 Mbps 
+Flow 9 (10.1.7.1:8080 -> 10.1.5.1:49153)
+ Tx Bytes: 199684
+ Rx Bytes: 199684
+ Throughput: 0.077974 Mbps 
+Waf: Entering directory `/home/taegeuk/ns3-26/SFL-RED/ns-allinone-3.26/ns-3.26/build'
+Waf: Leaving directory `/home/taegeuk/ns3-26/SFL-RED/ns-allinone-3.26/ns-3.26/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (6.363s)
+Flow 0 (10.1.1.1:49153 -> 10.1.11.1:8080)
+ Tx Bytes: 4917972
+ Rx Bytes: 4903576
+ Throughput: 1.90611 Mbps 
+Flow 1 (10.1.2.1:49153 -> 10.1.10.1:8080)
+ Tx Bytes: 1197952
+ Rx Bytes: 1173564
+ Throughput: 0.444409 Mbps 
+Flow 2 (10.1.3.1:49153 -> 10.1.9.1:8080)
+ Tx Bytes: 1126900
+ Rx Bytes: 1099864
+ Throughput: 0.416264 Mbps 
+Flow 3 (10.1.4.1:49153 -> 10.1.8.1:8080)
+ Tx Bytes: 1178472
+ Rx Bytes: 1154960
+ Throughput: 0.437382 Mbps 
+Flow 4 (10.1.5.1:49153 -> 10.1.7.1:8080)
+ Tx Bytes: 4210600
+ Rx Bytes: 4192968
+ Throughput: 1.62991 Mbps 
+Flow 5 (10.1.11.1:8080 -> 10.1.1.1:49153)
+ Tx Bytes: 230832
+ Rx Bytes: 230832
+ Throughput: 0.0900964 Mbps 
+Flow 6 (10.1.10.1:8080 -> 10.1.2.1:49153)
+ Tx Bytes: 64328
+ Rx Bytes: 64328
+ Throughput: 0.0243847 Mbps 
+Flow 7 (10.1.9.1:8080 -> 10.1.3.1:49153)
+ Tx Bytes: 62508
+ Rx Bytes: 62508
+ Throughput: 0.0236722 Mbps 
+Flow 8 (10.1.8.1:8080 -> 10.1.4.1:49153)
+ Tx Bytes: 64588
+ Rx Bytes: 64588
+ Throughput: 0.0245094 Mbps 
+Flow 9 (10.1.7.1:8080 -> 10.1.5.1:49153)
+ Tx Bytes: 199684
+ Rx Bytes: 199684
+ Throughput: 0.077974 Mbps 
+Waf: Entering directory `/home/taegeuk/ns3-26/SFL-RED/ns-allinone-3.26/ns-3.26/build'
+Waf: Leaving directory `/home/taegeuk/ns3-26/SFL-RED/ns-allinone-3.26/ns-3.26/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (4.911s)
+Flow 0 (10.1.1.1:49153 -> 10.1.11.1:8080)
+ Tx Bytes: 4917972
+ Rx Bytes: 4903576
+ Throughput: 1.90611 Mbps 
+Flow 1 (10.1.2.1:49153 -> 10.1.10.1:8080)
+ Tx Bytes: 1197952
+ Rx Bytes: 1173564
+ Throughput: 0.444409 Mbps 
+Flow 2 (10.1.3.1:49153 -> 10.1.9.1:8080)
+ Tx Bytes: 1126900
+ Rx Bytes: 1099864
+ Throughput: 0.416264 Mbps 
+Flow 3 (10.1.4.1:49153 -> 10.1.8.1:8080)
+ Tx Bytes: 1178472
+ Rx Bytes: 1154960
+ Throughput: 0.437382 Mbps 
+Flow 4 (10.1.5.1:49153 -> 10.1.7.1:8080)
+ Tx Bytes: 4210600
+ Rx Bytes: 4192968
+ Throughput: 1.62991 Mbps 
+Flow 5 (10.1.11.1:8080 -> 10.1.1.1:49153)
+ Tx Bytes: 230832
+ Rx Bytes: 230832
+ Throughput: 0.0900964 Mbps 
+Flow 6 (10.1.10.1:8080 -> 10.1.2.1:49153)
+ Tx Bytes: 64328
+ Rx Bytes: 64328
+ Throughput: 0.0243847 Mbps 
+Flow 7 (10.1.9.1:8080 -> 10.1.3.1:49153)
+ Tx Bytes: 62508
+ Rx Bytes: 62508
+ Throughput: 0.0236722 Mbps 
+Flow 8 (10.1.8.1:8080 -> 10.1.4.1:49153)
+ Tx Bytes: 64588
+ Rx Bytes: 64588
+ Throughput: 0.0245094 Mbps 
+Flow 9 (10.1.7.1:8080 -> 10.1.5.1:49153)
+ Tx Bytes: 199684
+ Rx Bytes: 199684
+ Throughput: 0.077974 Mbps 

@@ -8,7 +8,8 @@
 #include "ns3/point-to-point-layout-module.h" 
 #include "ns3/ipv4-static-routing-helper.h"
 #include "ns3/ipv4-list-routing-helper.h" 
-#include "ns3/ipv4-global-routing-helper.h" 
+#include "ns3/ipv4-global-routing-helper.h"
+#include "ns3/traffic-control-helper.h" 
 #include "ns3/flow-monitor.h"
 #include "ns3/flow-monitor-helper.h"
 #include "ns3/flow-monitor-module.h" 
@@ -133,6 +134,39 @@ CwndChange (Ptr<OutputStreamWrapper> stream, uint32_t oldCwnd, uint32_t newCwnd)
   *stream->GetStream () << Simulator::Now ().GetSeconds () << "\t" << oldCwnd << "\t" << newCwnd << std::endl;
 }
 
+std::string GetRedFormat(std::string red)
+{
+	if(red == "RED")
+		return "ns3::RedQueueDisc";
+	if(red == "ARED")
+		return "ns3::RedQueueDisc";
+	if(red == "HRED")
+		return "ns3::HeuristicRedQueueDisc";
+	if(red == "FRED")
+		return "ns3::FuzzyRedQueueDisc";
+	if(red == "SFLRED")
+		return "ns3::SflRedQueueDisc";
+	if(red == "CSFLRED")
+		return "ns3::CsflRedQueueDisc";
+	return "";
+}
+
+void SetRedFormat(std::string red)
+{
+	if(red == "RED")
+		Config::SetDefault("ns3::RedQueueDisc::ARED",BooleanValue(false));
+	if(red == "ARED")
+		Config::SetDefault("ns3::RedQueueDisc::ARED",BooleanValue(true));
+	if(red == "HRED")
+		Config::SetDefault("ns3::HeuristicRedQueueDisc::HRED",BooleanValue(true));
+	if(red == "FRED")
+		Config::SetDefault("ns3::FuzzyRedQueueDisc::FRED",BooleanValue(true));
+	if(red == "SFLRED")
+		Config::SetDefault("ns3::SflRedQueueDisc::SFLRED",BooleanValue(true));
+	if(red == "CSFLRED")
+		Config::SetDefault("ns3::CsflRedQueueDisc::CSFLRED",BooleanValue(true));
+}
+
 int main(int argc, char* argv[]) {
 
 /* default parameters start */
@@ -142,31 +176,17 @@ int main(int argc, char* argv[]) {
   std::string bandwidth = "5Mbps";
  std::string delay = "2ms";
   double error_rate = 0.000001;
- //int queuesize = 10; //packets
   int simulation_time = 20; //seconds
   bool tracing = true;
+  std::string red = "RED";
 
 
 
 /* default parameters end */
 	
 
-
-// Select TCP variant
-  /*if (tcp_variant.compare("TcpTahoe") == 0)
-    Config::SetDefault("ns3::TcpL4Protocol::SocketType", TypeIdValue (TcpTahoe::GetTypeId()));
-  else if (tcp_variant.compare("TcpReno") == 0)
-    Config::SetDefault("ns3::TcpL4Protocol::SocketType", TypeIdValue (TcpReno::GetTypeId()));
-  else if (tcp_variant.compare("TcpNewReno") == 0)*/
     Config::SetDefault("ns3::TcpL4Protocol::SocketType", TypeIdValue (TcpNewReno::GetTypeId()));
-  /*else
-    {
-      fprintf (stderr, "Invalid TCP version\n");
-      exit (1);
-    }
-	
-  Config::SetDefault ("ns3::DropTailQueue::MaxPackets", UintegerValue(uint32_t(queuesize)));
-*/
+  
     NS_LOG_COMPONENT_DEFINE("net_layer");
     uint16_t num_Nodes = 12;
 	
@@ -182,8 +202,17 @@ int main(int argc, char* argv[]) {
    cmd.AddValue("PacketSize", "size of application packet sent", PacketSize);
     cmd.AddValue("DataRate", "rate of pacekts sent", UDPRate);
     cmd.AddValue("tracing", "turn on ascii and pcap tracing", tracing);
+    cmd.AddValue("red","Red format",red);
     cmd.Parse(argc, argv);
 
+
+	if(GetRedFormat(red)=="")
+		{
+			std::cout<<"Red format not found.\n";
+			exit(1);
+		}
+	else
+		SetRedFormat(red);
 
     Config::SetDefault("ns3::OnOffApplication::PacketSize", UintegerValue(PacketSize));
    Config::SetDefault("ns3::OnOffApplication::DataRate", StringValue(UDPRate));
@@ -241,10 +270,7 @@ int main(int argc, char* argv[]) {
     for(i=0; i < num_Nodes-1 ; i++)
     {
 	d_link[i] = p2p.Install(link[i]);
-    }
-	    	
-
-
+    }  
 
   /*  Error Model at Reciever end  */
  Ptr<RateErrorModel> em = CreateObject<RateErrorModel> ();
@@ -263,6 +289,14 @@ int main(int argc, char* argv[]) {
     InternetStackHelper internet;
     internet.SetRoutingHelper(list);
     internet.Install(nodes);
+
+
+  	TrafficControlHelper tchBottleneck;
+          QueueDiscContainer queueDiscs;
+          tchBottleneck.SetRootQueueDisc (GetRedFormat(red));
+          queueDiscs = tchBottleneck.Install (d_link[6]);
+
+
 
 /** Assigning Network Base Address to Each node **/
 
@@ -389,14 +423,14 @@ int main(int argc, char* argv[]) {
 
     if (tracing == true) {
         AsciiTraceHelper ascii;
-        p2p.EnableAsciiAll(ascii.CreateFileStream("topology.tr"));
-        p2p.EnablePcapAll("topology");
+        p2p.EnableAsciiAll(ascii.CreateFileStream("topology_"+red+".tr"));
+        p2p.EnablePcapAll("topology_"+red);
     }
 
 
 
 
-Ptr<OutputStreamWrapper> stream1 = Create<OutputStreamWrapper> ("Table22", std::ios::out); 
+Ptr<OutputStreamWrapper> stream1 = Create<OutputStreamWrapper> ("Table_"+red, std::ios::out); 
 Ipv4GlobalRoutingHelper helper2;
 helper2.PrintRoutingTableAllAt(Seconds(2.0),stream1);
 

@@ -1,0 +1,9 @@
+#!/bin/bash
+cd ..
+./waf --run "topology --red=RED"
+./waf --run "topology --red=ARED"
+./waf --run "topology --red=HRED"
+./waf --run "topology --red=FRED"
+./waf --run "topology --red=SFLRED"
+./waf --run "topology --red=CSFLRED"
+cd automation
