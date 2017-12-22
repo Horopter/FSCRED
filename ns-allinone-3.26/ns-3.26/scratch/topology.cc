@@ -220,7 +220,7 @@ int main(int argc, char* argv[]) {
 
     /* configuration for NETAnim Animator **/
     ns3::PacketMetadata::Enable();
-    std::string animFile = "topology12.xml";
+    std::string animFile = "topology_"+red+".xml";
 
     
 
@@ -269,7 +269,7 @@ int main(int argc, char* argv[]) {
     
     for(i=0; i < num_Nodes-1 ; i++)
     {
-	d_link[i] = p2p.Install(link[i]);
+	   d_link[i] = p2p.Install(link[i]);
     }  
 
   /*  Error Model at Reciever end  */
@@ -382,7 +382,7 @@ int main(int argc, char* argv[]) {
 
   //trace cwnd
   AsciiTraceHelper asciiTraceHelper;
-  Ptr<OutputStreamWrapper> stream = asciiTraceHelper.CreateFileStream ("topology.cwnd");
+  Ptr<OutputStreamWrapper> stream = asciiTraceHelper.CreateFileStream ("topology_"+red+".cwnd");
   ns3TcpSocket1->TraceConnectWithoutContext ("CongestionWindow", MakeBoundCallback (&CwndChange, stream));
   ns3TcpSocket2->TraceConnectWithoutContext ("CongestionWindow", MakeBoundCallback (&CwndChange, stream));
   ns3TcpSocket3->TraceConnectWithoutContext ("CongestionWindow", MakeBoundCallback (&CwndChange, stream));
