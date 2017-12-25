@@ -419,7 +419,7 @@ int main(int argc, char* argv[]) {
     anim.SetConstantPosition(n, 10, 8);
     n = nodes.Get(11);
     anim.SetConstantPosition(n, 6, 4);
-
+    anim.SetMaxPktsPerTraceFile(1000000);
 
     if (tracing == true) {
         AsciiTraceHelper ascii;

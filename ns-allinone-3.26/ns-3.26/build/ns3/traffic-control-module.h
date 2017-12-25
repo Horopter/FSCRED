@@ -8,8 +8,8 @@
 
 // Module headers:
 #include "codel-queue-disc.h"
-#include "csfl-red-queue-disc.h"
 #include "fq-codel-queue-disc.h"
+#include "fsc-red-queue-disc.h"
 #include "fuzzy-red-queue-disc.h"
 #include "hred-queue-disc.h"
 #include "packet-filter.h"
@@ -18,7 +18,7 @@
 #include "queue-disc-container.h"
 #include "queue-disc.h"
 #include "red-queue-disc.h"
-#include "sfl-red-queue-disc.h"
+#include "sc-red-queue-disc.h"
 #include "traffic-control-helper.h"
 #include "traffic-control-layer.h"
 #endif
