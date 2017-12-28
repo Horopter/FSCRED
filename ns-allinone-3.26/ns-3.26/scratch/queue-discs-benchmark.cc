@@ -123,8 +123,8 @@ int main (int argc, char *argv[])
   uint32_t flowsPacketsSize = 1000;
 
   float startTime = 0.1; // in s
-  float simDuration = 60;
-  float samplingPeriod = 1;
+  float simDuration = 600;
+  float samplingPeriod = 2;
 
   CommandLine cmd;
   cmd.AddValue ("bandwidth", "Bottleneck bandwidth", bandwidth);
@@ -197,20 +197,43 @@ int main (int argc, char *argv[])
       Config::SetDefault ("ns3::FuzzyRedQueueDisc::Mode", EnumValue (Queue::QUEUE_MODE_PACKETS));
       Config::SetDefault ("ns3::FuzzyRedQueueDisc::QueueLimit", UintegerValue (queueDiscSize));
     }
-  else if (queueDiscType.compare ("SFLRED") == 0)
+  else if (queueDiscType.compare ("SCRED") == 0)
     {
-      tchBottleneck.SetRootQueueDisc ("ns3::SflRedQueueDisc");
-      Config::SetDefault ("ns3::SflRedQueueDisc::SFLRED", BooleanValue (true));
-      Config::SetDefault ("ns3::SflRedQueueDisc::Mode", EnumValue (Queue::QUEUE_MODE_PACKETS));
-      Config::SetDefault ("ns3::SflRedQueueDisc::QueueLimit", UintegerValue (queueDiscSize));
+      tchBottleneck.SetRootQueueDisc ("ns3::SCRedQueueDisc");
+      Config::SetDefault ("ns3::SCRedQueueDisc::SCRED", BooleanValue (true));
+      Config::SetDefault ("ns3::SCRedQueueDisc::Mode", EnumValue (Queue::QUEUE_MODE_PACKETS));
+      Config::SetDefault ("ns3::SCRedQueueDisc::QueueLimit", UintegerValue (queueDiscSize));
     }
-  else if (queueDiscType.compare ("CSFLRED") == 0)
+  else if (queueDiscType.compare ("FSCRED") == 0)
     {
-      tchBottleneck.SetRootQueueDisc ("ns3::CsflRedQueueDisc");
-      Config::SetDefault ("ns3::CsflRedQueueDisc::CSFLRED", BooleanValue (true));
-      Config::SetDefault ("ns3::CsflRedQueueDisc::Mode", EnumValue (Queue::QUEUE_MODE_PACKETS));
-      Config::SetDefault ("ns3::CsflRedQueueDisc::QueueLimit", UintegerValue (queueDiscSize));
+      tchBottleneck.SetRootQueueDisc ("ns3::FscRedQueueDisc");
+      Config::SetDefault ("ns3::FscRedQueueDisc::FSCRED", BooleanValue (true));
+      Config::SetDefault ("ns3::FscRedQueueDisc::Mode", EnumValue (Queue::QUEUE_MODE_PACKETS));
+      Config::SetDefault ("ns3::FscRedQueueDisc::QueueLimit", UintegerValue (queueDiscSize));
     }
+  else if (queueDiscType.compare ("PfifoFast") == 0)
+   {
+     tchBottleneck.SetRootQueueDisc ("ns3::PfifoFastQueueDisc", "Limit", UintegerValue (queueDiscSize));
+   }
+ else if (queueDiscType.compare ("CoDel") == 0)
+   {
+     tchBottleneck.SetRootQueueDisc ("ns3::CoDelQueueDisc");
+     Config::SetDefault ("ns3::CoDelQueueDisc::Mode", EnumValue (Queue::QUEUE_MODE_PACKETS));
+     Config::SetDefault ("ns3::CoDelQueueDisc::MaxPackets", UintegerValue (queueDiscSize));
+   }
+ else if (queueDiscType.compare ("FqCoDel") == 0)
+   {
+     uint32_t handle = tchBottleneck.SetRootQueueDisc ("ns3::FqCoDelQueueDisc");
+     Config::SetDefault ("ns3::FqCoDelQueueDisc::PacketLimit", UintegerValue (queueDiscSize));
+     tchBottleneck.AddPacketFilter (handle, "ns3::FqCoDelIpv4PacketFilter");
+     tchBottleneck.AddPacketFilter (handle, "ns3::FqCoDelIpv6PacketFilter");
+   }
+ else if (queueDiscType.compare ("PIE") == 0)
+   {
+     tchBottleneck.SetRootQueueDisc ("ns3::PieQueueDisc");
+     Config::SetDefault ("ns3::PieQueueDisc::Mode", EnumValue (Queue::QUEUE_MODE_PACKETS));
+     Config::SetDefault ("ns3::PieQueueDisc::QueueLimit", UintegerValue (queueDiscSize));
+   }
   else 
     {
       NS_ABORT_MSG ("--queueDiscType not valid");

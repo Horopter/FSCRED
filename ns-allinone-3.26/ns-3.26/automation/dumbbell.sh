@@ -1,0 +1,15 @@
+echo "start time :"
+date +"%T"
+cd ..
+./waf --run "topology --red=RED"
+./waf --run "topology --red=ARED"
+./waf --run "topology --red=HRED"
+./waf --run "topology --red=FRED"
+./waf --run "topology --red=SCRED"
+./waf --run "topology --red=FSCRED"
+./waf --run "topology --red=PfifoFast"
+./waf --run "topology --red=CoDel"
+./waf --run "topology --red=PIE"
+cd automation
+echo "end time :"
+date +"%T"

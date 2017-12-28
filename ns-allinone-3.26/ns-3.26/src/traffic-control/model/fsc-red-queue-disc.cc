@@ -812,15 +812,15 @@ FscRedQueueDisc::UpdateMaxPFSC (double newAve,Time now)
     {
       m_status = Between;
       if(m_minTh <= newAve && newAve < m_target)
-	{
-		m_curMaxP = 4*m_curMaxP*m_curMaxP*m_curMaxP;
-		m_lastSet = now;
-	}
+        	{
+        		m_curMaxP = 4*m_curMaxP*m_curMaxP*m_curMaxP;
+        		m_lastSet = now;
+        	}
       else if(m_target <= newAve && newAve < m_maxTh)
-	{
-		m_curMaxP = 2*m_curMaxP;
-		m_lastSet = now;
-	}
+        	{
+        		m_curMaxP = 2*m_curMaxP;
+        		m_lastSet = now;
+        	}
     } 
   else if (newAve < m_minTh && m_status != Below)
     {
@@ -831,9 +831,9 @@ FscRedQueueDisc::UpdateMaxPFSC (double newAve,Time now)
     {
       m_status = Above;
       if(m_maxTh < newAve && newAve < 2*m_maxTh)
-	{
-		m_curMaxP = 4*m_curMaxP*m_curMaxP*m_curMaxP;
-	}
+      	{
+      		m_curMaxP = 4*m_curMaxP*m_curMaxP*m_curMaxP;
+      	}
       else
       		m_curMaxP = m_curMaxP * m_b;
       m_lastSet = now;

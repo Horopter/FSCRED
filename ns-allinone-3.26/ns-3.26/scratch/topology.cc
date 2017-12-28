@@ -144,10 +144,18 @@ std::string GetRedFormat(std::string red)
 		return "ns3::HeuristicRedQueueDisc";
 	if(red == "FRED")
 		return "ns3::FuzzyRedQueueDisc";
-	if(red == "SFLRED")
-		return "ns3::SflRedQueueDisc";
-	if(red == "CSFLRED")
-		return "ns3::CsflRedQueueDisc";
+	if(red == "SCRED")
+		return "ns3::SCRedQueueDisc";
+	if(red == "FSCRED")
+    return "ns3::FscRedQueueDisc";
+  if(red == "PfifoFast")
+    return "ns3::PfifoFastQueueDisc";
+  if(red == "CoDel")
+    return "ns3::CoDelQueueDisc";
+  if(red == "FqCoDel")
+    return "ns3::FqCoDelQueueDisc";
+  if(red == "PIE")
+    return "ns3::PieQueueDisc";  
 	return "";
 }
 
@@ -161,10 +169,10 @@ void SetRedFormat(std::string red)
 		Config::SetDefault("ns3::HeuristicRedQueueDisc::HRED",BooleanValue(true));
 	if(red == "FRED")
 		Config::SetDefault("ns3::FuzzyRedQueueDisc::FRED",BooleanValue(true));
-	if(red == "SFLRED")
-		Config::SetDefault("ns3::SflRedQueueDisc::SFLRED",BooleanValue(true));
-	if(red == "CSFLRED")
-		Config::SetDefault("ns3::CsflRedQueueDisc::CSFLRED",BooleanValue(true));
+	if(red == "SCRED")
+		Config::SetDefault("ns3::SCRedQueueDisc::SCRED",BooleanValue(true));
+	if(red == "FSCRED")
+		Config::SetDefault("ns3::FscRedQueueDisc::FSCRED",BooleanValue(true));
 }
 
 int main(int argc, char* argv[]) {
@@ -292,9 +300,9 @@ int main(int argc, char* argv[]) {
 
 
   	TrafficControlHelper tchBottleneck;
-          QueueDiscContainer queueDiscs;
-          tchBottleneck.SetRootQueueDisc (GetRedFormat(red));
-          queueDiscs = tchBottleneck.Install (d_link[6]);
+    QueueDiscContainer queueDiscs;
+    tchBottleneck.SetRootQueueDisc (GetRedFormat(red));
+    queueDiscs = tchBottleneck.Install (d_link[6]);
 
 
 
@@ -302,12 +310,11 @@ int main(int argc, char* argv[]) {
 
     for(i=0; i < num_Nodes-1 ; i++)
     {
-	ipv4.SetBase(address[i], "255.255.255.0");
-	//address  = htonl(ntohl(address) + 1);
- 	iic[i] = ipv4.Assign(d_link[i]);
-    	iic[i].SetMetric(0, 2);
-	iic[i].SetMetric(1, 2);
-		
+    	ipv4.SetBase(address[i], "255.255.255.0");
+    	//address  = htonl(ntohl(address) + 1);
+     	iic[i] = ipv4.Assign(d_link[i]);
+        	iic[i].SetMetric(0, 2);
+    	iic[i].SetMetric(1, 2);		
     }
 	
      Ipv4GlobalRoutingHelper::PopulateRoutingTables();
